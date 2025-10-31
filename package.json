@@ -1,0 +1,10 @@
+{
+  "name": "mm2-casino",
+  "version": "1.0.0",
+  "description": "MM2 Automatic Casino System",
+  "scripts": {
+    "build": "echo 'No build process needed'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
