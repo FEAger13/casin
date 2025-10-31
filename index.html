@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎰 MM2 Automatic Casino</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🎰 MM2 CASINO</h1>
+                <p>Automatic Trading & Games</p>
+            </div>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <span id="usernameDisplay"></span>
+                <span id="balanceDisplay">Balance: 0</span>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <!-- Registration Section -->
+        <section id="registrationSection" class="section">
+            <div class="registration-container">
+                <h2>🎮 Register Account</h2>
+                <div class="input-group">
+                    <label>Roblox Username:</label>
+                    <input type="text" id="robloxUsername" placeholder="Enter your exact Roblox username">
+                    <button class="btn-primary" onclick="generateCode()">Generate Code</button>
+                </div>
+
+                <div class="code-section" id="codeSection" style="display: none;">
+                    <label>Your Verification Code:</label>
+                    <div class="verification-code" id="verificationCode"></div>
+                    <p class="timer">⏰ Code expires in: <span id="countdown">10:00</span></p>
+                    
+                    <div class="instructions">
+                        <h4>📋 Instructions:</h4>
+                        <ol>
+                            <li>Copy the code above</li>
+                            <li>Open Roblox and edit your profile description</li>
+                            <li>Paste the code into your description</li>
+                            <li>Click "Finish" below within 10 minutes</li>
+                        </ol>
+                    </div>
+
+                    <button class="btn-success" onclick="verifyRegistration()">Finish Registration</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Casino (after login) -->
+        <section id="casinoSection" class="section" style="display: none;">
+            <!-- Balance & Deposit -->
+            <div class="balance-section">
+                <div class="balance-card">
+                    <h3>💰 Your Balance</h3>
+                    <div class="balance-amount" id="currentBalance">0 value</div>
+                    <button class="btn-deposit" onclick="showDeposit()">Deposit Items</button>
+                </div>
+            </div>
+
+            <!-- Deposit Modal -->
+            <div id="depositModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" onclick="hideDeposit()">&times;</span>
+                    <h3>💰 Deposit MM2 Items</h3>
+                    
+                    <div class="bot-info">
+                        <div class="bot-card">
+                            <h4>🤖 Casino Bot</h4>
+                            <div class="bot-username">MM2_Casino_Bot</div>
+                            <button class="btn-join" onclick="joinServer()">🎮 Join Server</button>
+                        </div>
+                    </div>
+
+                    <div class="inventory-select">
+                        <h4>Select Items to Deposit:</h4>
+                        <div class="items-grid" id="itemsGrid">
+                            <!-- Items will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="selected-items">
+                        <h4>Selected Items: <span id="selectedValue">0</span> value</h4>
+                        <div id="selectedItemsList"></div>
+                        <button class="btn-confirm" onclick="prepareDeposit()">Confirm Deposit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Games Section -->
+            <div class="games-section">
+                <h2>🎮 Casino Games</h2>
+                
+                <!-- PvP Game -->
+                <div class="game-card">
+                    <h3>🎯 PvP Battle</h3>
+                    <p>1v1 battle - winner takes all (10% commission)</p>
+                    <div class="pvp-setup">
+                        <div class="player-side">
+                            <h4>Your Items</h4>
+                            <div class="pvp-items" id="pvpPlayerItems"></div>
+                            <div class="pvp-value">Value: <span id="pvpPlayerValue">0</span></div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="player-side">
+                            <h4>Opponent Items</h4>
+                            <div class="pvp-items" id="pvpOpponentItems"></div>
+                            <div class="pvp-value">Value: <span id="pvpOpponentValue">0</span></div>
+                        </div>
+                    </div>
+                    <button class="btn-game" onclick="startPvP()">Start PvP Battle</button>
+                </div>
+
+                <!-- Upgrader Game -->
+                <div class="game-card">
+                    <h3>⚡ Upgrader</h3>
+                    <p>Upgrade your items with different success chances</p>
+                    <div class="upgrader-interface">
+                        <select id="upgradeItemSelect" class="item-select">
+                            <option value="">Select item to upgrade</option>
+                        </select>
+                        <select id="upgradeChance" class="chance-select">
+                            <option value="10">10% chance (8x reward)</option>
+                            <option value="25">25% chance (3x reward)</option>
+                            <option value="50">50% chance (1.8x reward)</option>
+                            <option value="70">70% chance (1.3x reward)</option>
+                        </select>
+                        <button class="btn-game" onclick="startUpgrade()">Upgrade Item</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory -->
+            <div class="inventory-section">
+                <h2>🎒 Your Inventory</h2>
+                <div class="inventory-grid" id="inventoryGrid">
+                    <!-- Items will appear here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
